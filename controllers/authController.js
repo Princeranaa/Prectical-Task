@@ -4,7 +4,7 @@ const { generateToken } = require("../utils/generateToken");
 
 module.exports.registerUser = async function (req, res) {
   try {
-    let { email, password, fullname } = req.body;
+    let { email, password, fullname, phone } = req.body;
 
     let user = await userModel.findOne({ email: email });
     if (user) {
@@ -18,6 +18,7 @@ module.exports.registerUser = async function (req, res) {
         else {
           let user = await userModel.create({
             email,
+            phone,
             password: hash,
             fullname,
           });
@@ -55,7 +56,11 @@ module.exports.loginUser = async function (req, res) {
   });
 };
 
+
+
 module.exports.logout = function (req, res) {
   res.cookie("token", "");
   res.redirect("/");
 };
+
+

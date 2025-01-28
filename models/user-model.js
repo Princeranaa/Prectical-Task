@@ -7,6 +7,7 @@ const userSchema = mongoose.Schema({
     trim: true,
   },
   email: String,
+  phone: String,
   password: String,
   cart: [{
     type: mongoose.Schema.Types.ObjectId,
